@@ -1,4 +1,5 @@
-html lang="en">
+<!DOCTYPE html>
+<html lang="en">
      <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,7 @@ html lang="en">
 <header class="logo">
     <div class="grid-container">
          <div class="image-container">
-            <img loading="lazy" src="Images\images.png" alt="Green World Brakpan Herbal Pharmacy logo" width="400" height="200" class="grid-item">
+            <img loading="lazy" src="static/Images/greenworldlogo.jpg" alt="Green World Brakpan Herbal Pharmacy logo" width="400" height="200" class="grid-item">
             <div class="image-text">
                 <h1>Heart and Blood Circulatory Health</h1>
             </div>
@@ -33,12 +34,12 @@ html lang="en">
     <main class="container">
 
    <article class="product-card">
-    <img src="Images/027cd04d4103966b69e75c4affaa25e3.jpg" alt="Deep Sea Fish Oil Capsules" class="product-image">
+    <img src=".jpg" alt="Deep Sea Fish Oil Capsules" class="product-image">
     
-    <h1>Deep Sea Fish Oil Capsules</h1>
+    <h2>Deep Sea Fish Oil Capsules</h2>
     <p>Supports heart health, brain function, and joint mobility through rich omega-3 fatty acids.</p>
     
-    <p>Price: R<span class="product-price">488.00</span></p>
+    <p>Price: <span class="product-price">R488.00</span></p>
 
     <section class="purchase-zone">
         <label>Quantity:</label>
@@ -50,13 +51,13 @@ html lang="en">
 </article>
 
     <article class="product-card">
-        <img src="Images/8f392b958b7aa34d118727c70e01e26d.jpg" alt="Cardio Power Capsules" class="product-image">
+        <img src=".jpg" alt="Cardio Power Capsules" class="product-image">
         
-        <h1>Cardio Power Capsules</h1>
+        <h2>Cardio Power Capsules</h2>
         <p>Supports cardiovascular health, circulation, and overall heart function.</p>
 
 
-        <p>Price: R<span class="product-price">371.00</span></p>
+        <p>Price: <span class="product-price">R371.00</span></p>
 
         <section class="purchase-zone">
             <label>Quantity:</label>
@@ -70,12 +71,12 @@ html lang="en">
     </article>
 
      <article class="product-card">
-        <img src="Images/4d7a934cf445170686dd36807745efa9.jpg" alt="Lipid Care Tea" class="product-image">
+        <img src=".jpg" alt="Lipid Care Tea" class="product-image">
         
-        <h1>Lipid Care Tea</h1>
+        <h2>Lipid Care Tea</h2>
         <p>Supports healthy cholesterol levels and cardiovascular function.</p>
 
-        <p>Price: R<span class="product-price">273.00</span></p>
+        <p>Price: <span class="product-price">R273.00</span></p>
 
         <section class="purchase-zone">
             <label>Quantity:</label>
@@ -88,12 +89,12 @@ html lang="en">
     </article>
 
     <article class="product-card">
-        <img src="Images/23a158ea20f74f80c5759beeb73943d4.jpg" alt="Ginkgo Biloba Capsules" class="product-image">
+        <img src=".jpg" alt="Ginkgo Biloba Capsules" class="product-image">
         
-        <h1>Ginkgo Biloba Capsules</h1>
+        <h2>Ginkgo Biloba Capsules</h2>
         <p>Supports cognitive function and circulation.</p>
 
-        <p>Price: R<span class="product-price">439.00</span></p>
+        <p>Price: <span class="product-price">R439.00</span></p>
 
         <section class="purchase-zone">
             <label>Quantity:</label>
@@ -106,12 +107,12 @@ html lang="en">
     </article>
 
     <article class="product-card">
-        <img src="Images/980a28d4871e261a1ff4c0551370b574(3).jpg" alt="Garlic Oil Softgels" class="product-image">
+        <img src=".jpg" alt="Garlic Oil Softgels" class="product-image">
         
-        <h1>Garlic Oil Softgels</h1>
+        <h2>Garlic Oil Softgels</h2>
         <p>Supports cardiovascular health and immune function.</p>
 
-        <p>Price: R<span class="product-price">439.00</span></p>
+        <p>Price: <span class="product-price">R439.00</span></p>
 
         <section class="purchase-zone">
             <label>Quantity:</label>
@@ -125,12 +126,12 @@ html lang="en">
     </article>
 
     <article class="product-card">
-        <img src="Images/b747125220dd27e15d90fd3e0844a75b.jpg" alt="SuperCoQ-10 Capsules" class="product-image">
+        <img src=".jpg" alt="SuperCoQ-10 Capsules" class="product-image">
         
-        <h1>SuperCoQ-10 Capsules</h1>
+        <h2>SuperCoQ-10 Capsules</h2>
         <p>Supports heart health and cellular energy production.</p>
 
-        <p>Price: R<span class="product-price">527.00</span></p>
+        <p>Price: <span class="product-price">R527.00</span></p>
 
         <section class="purchase-zone">
             <label>Quantity:</label>
@@ -143,7 +144,23 @@ html lang="en">
     </article>
 </main>
 
-<script>
+
+<section id="checkout-area">
+    <h2>Your Order</h2>
+    <p>Ready to complete your purchase?</p>
+    
+    <button onclick="checkout()" class="buy-button whatsapp-button">
+        Send Order to WhatsApp
+    </button>
+    
+    <br><br>
+    
+    <a href="#" onclick="clearCart(); return false;" class="clear-cart-link">
+        Clear Shopping Cart
+    </a>
+</section>
+
+    <script>
 /**
  * GREEN WORLD BRAKPAN - MASTER LOGIC
  * Features: LocalStorage Persistence, Cart State Management, 
@@ -165,7 +182,7 @@ function addToCart(element) {
     const productCard = element.closest('.product-card');
     
     // Extract data from the card
-    const productName = productCard.querySelector('h1').innerText;
+    const productName = productCard.querySelector('h2').innerText;
     const priceValue = productCard.querySelector('.product-price').innerText;
     const qtyInput = productCard.querySelector('.qty-input');
     const quantity = parseInt(qtyInput.value);
@@ -181,7 +198,7 @@ function addToCart(element) {
         // If it's new, create a new object
         const item = {
             name: productName,
-            price: parseFloat(priceValue),
+            price: parseFloat(priceValue.replace('R', '')),
             qty: quantity,
             total: parseFloat(priceValue) * quantity
         };
@@ -258,20 +275,6 @@ function checkout() {
     window.open(whatsappURL, '_blank');
 }
 </script>
-<section id="checkout-area">
-    <h2>Your Order</h2>
-    <p>Ready to complete your purchase?</p>
-    
-    <button onclick="checkout()" class="buy-button whatsapp-button">
-        Send Order to WhatsApp
-    </button>
-    
-    <br><br>
-    
-    <a href="#" onclick="clearCart(); return false;" class="clear-cart-link">
-        Clear Shopping Cart
-    </a>
-</section>
-    
+
 </body>
 </html>

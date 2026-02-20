@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+	 <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Men's & Women's Health</title>
+		<link rel="stylesheet.css" href="style.css">
+	 </head>
+	 <body>
+
+<header class="logo">
+	<div class="grid-container">
+		 <div class="image-container">
+			<img loading="lazy" src="static/Images/greenworldlogo.jpg" alt="Green World Brakpan Herbal Pharmacy logo" width="400" height="200" class="grid-item">
+			<div class="image-text">
+				<h1>Men's & Women's Health</h1>
+			</div>
+			<section class="search-bar">
+				<input type="search" placeholder="Search products...">
+			</section>
+		 </div>
+		</div>
+
+			<nav>
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="products.html">Products</a></li>
+					<li><a href="about.html">About Us</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+				 <!--navigation menu-->
+			</nav>
+</header>
+	<main class="container">
+
+   <article class="product-card">
+	<img src=".jpg" alt="Deep Sea Fish Oil Capsules" class="product-image">
+    
+	<h2>Deep Sea Fish Oil Capsules</h2>
+	<p>Supports heart health, brain function, and joint mobility through rich omega-3 fatty acids.</p>
+    
+	<p>Price: <span class="product-price">R488.00</span></p>
+
+	<section class="purchase-zone">
+		<label>Quantity:</label>
+		<input type="number" class="qty-input" value="1" min="1" title="Quantity">
+        
+		<br><br>
+		<button onclick="addToCart(this)" class="buy-button">Add to Cart</button>
+	</section>
+</article>
+
+	<article class="product-card">
+		<img src=".jpg" alt="Cardio Power Capsules" class="product-image">
+        
+		<h2>Cardio Power Capsules</h2>
+		<p>Supports cardiovascular health, circulation, and overall heart function.</p>
+
+
+		<p>Price: <span class="product-price">R371.00</span></p>
+
+		<section class="purchase-zone">
+			<label>Quantity:</label>
+			<input type="number" class="qty-input" value="1" min="1" title="Quantity">
+            
+			<br><br>
+
+			<button onclick="addToCart(this)" class="buy-button">Add to Cart</button>
+	</section>
+		</section>
+	</article>
+
+	 <article class="product-card">
+		<img src=".jpg" alt="Lipid Care Tea" class="product-image">
+        
+		<h2>Lipid Care Tea</h2>
+		<p>Supports healthy cholesterol levels and cardiovascular function.</p>
+
+		<p>Price: <span class="product-price">R273.00</span></p>
+
+		<section class="purchase-zone">
+			<label>Quantity:</label>
+			<input type="number" class="qty-input" value="1" min="1" title="Quantity">
+            
+			<br><br>
+
+			<button onclick="addToCart(this)" class="buy-button">Add to Cart</button>
+		</section>
+	</article>
+
+	<article class="product-card">
+		<img src=".jpg" alt="Ginkgo Biloba Capsules" class="product-image">
+        
+		<h2>Ginkgo Biloba Capsules</h2>
+		<p>Supports cognitive function and circulation.</p>
+
+		<p>Price: <span class="product-price">R439.00</span></p>
+
+		<section class="purchase-zone">
+			<label>Quantity:</label>
+			<input type="number" class="qty-input" value="1" min="1" title="Quantity">
+            
+			<br><br>
+
+			<button onclick="addToCart(this)" class="buy-button">Add to Cart</button>
+		</section>
+	</article>
+
+	<article class="product-card">
+		<img src=".jpg" alt="Garlic Oil Softgels" class="product-image">
+        
+		<h2>Garlic Oil Softgels</h2>
+		<p>Supports cardiovascular health and immune function.</p>
+
+		<p>Price: <span class="product-price">R439.00</span></p>
+
+		<section class="purchase-zone">
+			<label>Quantity:</label>
+			<input type="number" class="qty-input" value="1" min="1" title="Quantity">
+            
+			<br><br>
+
+			<button onclick="addToCart(this)" class="buy-button">Add to Cart</button>
+			</a>
+		</section>
+	</article>
+
+	<article class="product-card">
+		<img src=".jpg" alt="SuperCoQ-10 Capsules" class="product-image">
+        
+		<h2>SuperCoQ-10 Capsules</h2>
+		<p>Supports heart health and cellular energy production.</p>
+
+		<p>Price: <span class="product-price">R527.00</span></p>
+
+		<section class="purchase-zone">
+			<label>Quantity:</label>
+			<input type="number" class="qty-input" value="1" min="1" title="Quantity">
+            
+			<br><br>
+
+			<button onclick="addToCart(this)" class="buy-button">Add to Cart</button>
+		</section>
+	</article>
+</main>
+
+   <script>
+/**
+ * GREEN WORLD BRAKPAN - MASTER LOGIC
+ * Features: LocalStorage Persistence, Cart State Management, 
+ * Duplicate Handling, and WhatsApp Integration.
+ */
+
+// 1. INITIALIZE: Load cart from browser memory or start with an empty array
+let cart = JSON.parse(localStorage.getItem('herbalCart')) || [];
+
+// 2. BOOTSTRAP: Update the Nav Counter as soon as the page loads
+updateCartCounter();
+
+/**
+ * Adds an item to the cart or updates quantity if it already exists.
+ * @param {HTMLElement} element - The button that was clicked.
+ */
+function addToCart(element) {
+    // Traverse the DOM to find the specific product card
+    const productCard = element.closest('.product-card');
+    
+    // Extract data from the card
+    const productName = productCard.querySelector('h2').innerText;
+    const priceValue = productCard.querySelector('.product-price').innerText;
+    const qtyInput = productCard.querySelector('.qty-input');
+    const quantity = parseInt(qtyInput.value);
+
+    // LOGIC: Check if this herb is already in the cart
+    const existingItem = cart.find(item => item.name === productName);
+
+    if (existingItem) {
+        // If it exists, just increase the quantity
+        existingItem.qty += quantity;
+        existingItem.total = existingItem.qty * existingItem.price;
+    } else {
+        // If it's new, create a new object
+        const item = {
+            name: productName,
+            price: parseFloat(priceValue.replace('R', '')),
+            qty: quantity,
+            total: parseFloat(priceValue) * quantity
+        };
+        cart.push(item);
+    }
+
+    // PERSISTENCE: Save the updated list to LocalStorage
+    localStorage.setItem('herbalCart', JSON.stringify(cart));
+    
+    // UI: Update the number in the navigation bar
+    updateCartCounter();
+    
+    // RESET: Put the input back to 1 for the next selection
+    qtyInput.value = 1;
+
+    alert(`Success! Added ${quantity} x ${productName} to your cart.`);
+}
+
+/**
+ * Calculates the total number of items and updates the Nav display.
+ */
+function updateCartCounter() {
+    const countElement = document.getElementById('cart-count');
+    if (countElement) {
+        // .reduce() sums up all 'qty' values in the array
+        let totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+        countElement.innerText = totalItems;
+    }
+}
+
+/**
+ * Wipes the cart data and refreshes the UI.
+ */
+function clearCart() {
+    if(confirm("Are you sure you want to empty your shopping cart?")) {
+        cart = [];
+        localStorage.removeItem('herbalCart');
+        updateCartCounter();
+        alert("Your cart is now empty.");
+    }
+}
+
+/**
+ * Formats the cart into a professional message and opens WhatsApp.
+ */
+function checkout() {
+    if (cart.length === 0) {
+        alert("Your cart is empty! Please add some herbs before checking out.");
+        return;
+    }
+
+    // Start building the WhatsApp message string
+    let message = "🌱 *Green World Brakpan - New Order* 🌱\n";
+    message += "------------------------------------------\n";
+    
+    let grandTotal = 0;
+
+    // Loop through the cart to list items
+    cart.forEach(item => {
+        message += `• ${item.qty} x ${item.name} (R${item.total.toFixed(2)})\n`;
+        grandTotal += item.total;
+    });
+
+    message += "------------------------------------------\n";
+    message += `*Grand Total: R${grandTotal.toFixed(2)}*\n\n`;
+    message += "Please let me know about payment and delivery/collection.";
+
+    // WhatsApp Configuration
+    const phoneNumber = "27736461149"; 
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+    // Action: Open the chat in a new tab
+    window.open(whatsappURL, '_blank');
+}
+</script>
+
+</body>
+</html>
